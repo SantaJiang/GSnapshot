@@ -56,10 +56,20 @@ Command::Command(QObject *parent) : QObject(parent)
 }
 
 void Command::initialize()
-{
-#if defined (Q_OS_WIN)
+{   
+#if defined Q_OS_WIN
 
     m_pCmd->start("cmd");
+    m_pCmd->waitForStarted();
+
+#elif defined Q_OS_LINUX
+
+    m_pCmd->start("bash");
+    m_pCmd->waitForStarted();
+
+#elif defined Q_OS_MACOS
+
+    m_pCmd->start("bash");
     m_pCmd->waitForStarted();
 
 #endif
@@ -84,6 +94,11 @@ void Command::execute(const QString &strCmd, const bool &bWaitForFinished)
     m_pCmd->write(strTermCmd.toUtf8().data());
 
 #elif defined Q_OS_WIN
+
+    QString strTermCmd = strCmd + '\n';
+    m_pCmd->write(strTermCmd.toUtf8().data());
+
+#elif defined Q_OS_MACOS
 
     QString strTermCmd = strCmd + '\n';
     m_pCmd->write(strTermCmd.toUtf8().data());
