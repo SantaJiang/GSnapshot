@@ -31,6 +31,10 @@
   <property name="windowTitle">
    <string>GSnapshot</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="src.qrc">
+    <normaloff>:/logo.ico</normaloff>:/logo.ico</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">QWidget#MainWindow{background-color: rgb(248, 249, 251);}
 </string>
@@ -343,6 +347,8 @@ border-radius: 4px;
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="src.qrc"/>
+ </resources>
  <connections/>
 </ui>

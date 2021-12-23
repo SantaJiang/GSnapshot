@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QTimer>
+#include <QCloseEvent>
 
 namespace Ui {
 class MainWindow;
@@ -16,12 +17,19 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+protected:
+     void closeEvent(QCloseEvent *event);
+     void changeEvent(QEvent * event);
+
 private slots:
     void readyReadStandardOutput(const QString&);
     void readyReadStandardError(const QString&);
     void on_pushButton_select_clicked();
     void on_pushButton_ok_clicked(bool checked);
     void commit();
+
+private:
+    void initForm();
 
 private:
     Ui::MainWindow *ui;

@@ -1,6 +1,7 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "Terminal.h"
+#include "trayicon.h"
 #include <QTime>
 #include <QThread>
 #include <QFileDialog>
@@ -12,17 +13,58 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
   , m_timer(nullptr)
 {
     ui->setupUi(this);
-
-    QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect();
-    effect->setBlurRadius(16);
-    effect->setColor(Qt::gray);
-    effect->setOffset(0);
-    ui->widget->setGraphicsEffect(effect);
+    initForm();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    TrayIcon::Instance()->setVisible(false);
+    exit(0);
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    event->accept();
+}
+
+void MainWindow::changeEvent(QEvent *event)
+{
+    if(event->type() != QEvent::WindowStateChange)
+        return;
+
+    if(this->windowState() == Qt::WindowMinimized)
+    {
+        if (TrayIcon::Instance()->getVisible())
+        {
+            TrayIcon::Instance()->setVisible(false);
+        }
+        else
+        {
+            TrayIcon::Instance()->setVisible(true);
+            TrayIcon::Instance()->showMessage(this->windowTitle(), "已经最小化到托盘,双击打开!");
+        }
+        this->hide();
+        return;
+    }
+
+    event->accept();
+}
+
+void MainWindow::initForm()
+{
+    QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect();
+    effect->setBlurRadius(16);
+    effect->setColor(Qt::gray);
+    effect->setOffset(0);
+    ui->widget->setGraphicsEffect(effect);
+
+    //设置托盘
+    TrayIcon::Instance()->setIcon("://logo.ico");
+    TrayIcon::Instance()->setToolTip(this->windowTitle());
+    TrayIcon::Instance()->setMainWidget(this);
+    TrayIcon::Instance()->setVisible(true);
+    TrayIcon::Instance()->setVisible(false);
 }
 
 void MainWindow::readyReadStandardOutput(const QString &str)

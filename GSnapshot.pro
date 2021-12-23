@@ -1,6 +1,7 @@
 QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 5): QT += core5compat
 
 TARGET = GSnapshot
 TEMPLATE = app
@@ -20,11 +21,24 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    Terminal.cpp
+    Terminal.cpp \
+    trayicon.cpp
 
 HEADERS += \
         mainwindow.h \
-    Terminal.h
+    Terminal.h \
+    trayicon.h
 
 FORMS += \
         mainwindow.ui
+
+RESOURCES += \
+    src.qrc
+
+win32:{
+RC_FILE = logo.rc
+}
+
+macx:{
+ICON = logo.icns
+}
