@@ -11,7 +11,7 @@
     <message>
         <location filename="mainwindow.ui" line="116"/>
         <source>Address:</source>
-        <translation>项目地址:</translation>
+        <translation>地址:</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="170"/>
@@ -30,8 +30,9 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="332"/>
+        <location filename="mainwindow.cpp" line="112"/>
         <source>OK</source>
-        <translation>开始</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="27"/>
@@ -42,6 +43,11 @@
         <location filename="mainwindow.cpp" line="74"/>
         <source>Please select an item</source>
         <translation>请选择一个项目</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="102"/>
+        <source>Executing</source>
+        <translation>执行中</translation>
     </message>
 </context>
 <context>

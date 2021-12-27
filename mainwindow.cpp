@@ -99,7 +99,7 @@ void MainWindow::on_pushButton_ok_clicked(bool checked)
         ui->pushButton_ok->setStyleSheet("background-color: rgb(225, 127, 127);"
                                          "color: rgb(255, 255, 255);"
                                          "border-radius: 4px;");
-        ui->pushButton_ok->setText("Executing");
+        ui->pushButton_ok->setText(tr("Executing"));
     }
     else
     {
@@ -109,6 +109,6 @@ void MainWindow::on_pushButton_ok_clicked(bool checked)
         ui->pushButton_ok->setStyleSheet("background-color: rgb(95, 84, 152);"
                                          "color: rgb(255, 255, 255);"
                                          "border-radius: 4px;");
-        ui->pushButton_ok->setText("OK");
+        ui->pushButton_ok->setText(tr("OK"));
     }
 }
