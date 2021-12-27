@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QTimer>
 #include <QCloseEvent>
+#include <QShowEvent>
 
 namespace Ui {
 class MainWindow;
@@ -19,7 +20,6 @@ public:
 
 protected:
      void closeEvent(QCloseEvent *event);
-     void changeEvent(QEvent * event);
 
 private slots:
     void readyReadStandardOutput(const QString&);

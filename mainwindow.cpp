@@ -19,36 +19,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 MainWindow::~MainWindow()
 {
     delete ui;
-    TrayIcon::Instance()->setVisible(false);
-    exit(0);
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    event->accept();
-}
-
-void MainWindow::changeEvent(QEvent *event)
-{
-    if(event->type() != QEvent::WindowStateChange)
-        return;
-
-    if(this->windowState() == Qt::WindowMinimized)
-    {
-        if (TrayIcon::Instance()->getVisible())
-        {
-            TrayIcon::Instance()->setVisible(false);
-        }
-        else
-        {
-            TrayIcon::Instance()->setVisible(true);
-            TrayIcon::Instance()->showMessage(this->windowTitle(), "已经最小化到托盘,双击打开!");
-        }
-        this->hide();
-        return;
-    }
-
-    event->accept();
+    event->ignore();
+    TrayIcon::Instance()->showMessage(this->windowTitle(), "已最小化到托盘");
+    this->hide();
+    return;
 }
 
 void MainWindow::initForm()
@@ -64,7 +42,6 @@ void MainWindow::initForm()
     TrayIcon::Instance()->setToolTip(this->windowTitle());
     TrayIcon::Instance()->setMainWidget(this);
     TrayIcon::Instance()->setVisible(true);
-    TrayIcon::Instance()->setVisible(false);
 }
 
 void MainWindow::readyReadStandardOutput(const QString &str)

@@ -10,10 +10,12 @@
 QScopedPointer<TrayIcon> TrayIcon::self;
 TrayIcon *TrayIcon::Instance()
 {
-    if (self.isNull()) {
+    if (self.isNull())
+    {
         static QMutex mutex;
         QMutexLocker locker(&mutex);
-        if (self.isNull()) {
+        if (self.isNull())
+        {
             self.reset(new TrayIcon);
         }
     }
@@ -33,13 +35,17 @@ TrayIcon::TrayIcon(QObject *parent) : QObject(parent)
 
 void TrayIcon::iconIsActived(QSystemTrayIcon::ActivationReason reason)
 {
-    switch (reason) {
+    switch (reason)
+    {
     case QSystemTrayIcon::Trigger:
-    case QSystemTrayIcon::DoubleClick: {
+    {
+        break;
+    }
+    case QSystemTrayIcon::DoubleClick:
+    {
         mainWidget->showNormal();
         break;
     }
-
     default:
         break;
     }
@@ -52,7 +58,8 @@ bool TrayIcon::getVisible() const
 
 void TrayIcon::setExitDirect(bool exitDirect)
 {
-    if (this->exitDirect != exitDirect) {
+    if (this->exitDirect != exitDirect)
+    {
         this->exitDirect = exitDirect;
     }
 }
@@ -62,9 +69,12 @@ void TrayIcon::setMainWidget(QWidget *mainWidget)
     this->mainWidget = mainWidget;
     menu->addAction("主界面", mainWidget, SLOT(showNormal()));
 
-    if (exitDirect) {
+    if (exitDirect)
+    {
         menu->addAction("退出", this, SLOT(closeAll()));
-    } else {
+    }
+    else
+    {
         menu->addAction("退出", this, SIGNAL(trayIconExit()));
     }
 
