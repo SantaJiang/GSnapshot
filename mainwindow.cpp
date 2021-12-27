@@ -24,7 +24,7 @@ MainWindow::~MainWindow()
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     event->ignore();
-    TrayIcon::Instance()->showMessage(this->windowTitle(), "已最小化到托盘");
+    TrayIcon::Instance()->showMessage(this->windowTitle(), tr("Minimized to tray"));
     this->hide();
     return;
 }
@@ -37,7 +37,7 @@ void MainWindow::initForm()
     effect->setOffset(0);
     ui->widget->setGraphicsEffect(effect);
 
-    //设置托盘
+    //set trayicon
     TrayIcon::Instance()->setIcon("://logo.ico");
     TrayIcon::Instance()->setToolTip(this->windowTitle());
     TrayIcon::Instance()->setMainWidget(this);
@@ -71,7 +71,7 @@ void MainWindow::commit()
 
 void MainWindow::on_pushButton_select_clicked()
 {
-    QString itemName = QFileDialog::getExistingDirectory(this, "Please select an item");
+    QString itemName = QFileDialog::getExistingDirectory(this, tr("Please select an item"));
     if (itemName.isNull())
         return;
 

@@ -67,15 +67,15 @@ void TrayIcon::setExitDirect(bool exitDirect)
 void TrayIcon::setMainWidget(QWidget *mainWidget)
 {
     this->mainWidget = mainWidget;
-    menu->addAction("主界面", mainWidget, SLOT(showNormal()));
+    menu->addAction(tr("MainWindow"), mainWidget, SLOT(showNormal()));
 
     if (exitDirect)
     {
-        menu->addAction("退出", this, SLOT(closeAll()));
+        menu->addAction(tr("Exit"), this, SLOT(closeAll()));
     }
     else
     {
-        menu->addAction("退出", this, SIGNAL(trayIconExit()));
+        menu->addAction(tr("Exit"), this, SIGNAL(trayIconExit()));
     }
 
     trayIcon->setContextMenu(menu);

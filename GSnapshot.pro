@@ -35,6 +35,9 @@ FORMS += \
 RESOURCES += \
     src.qrc
 
+TRANSLATIONS = \
+    language.zh_CN.ts
+
 win32:{
 RC_FILE = logo.rc
 }
