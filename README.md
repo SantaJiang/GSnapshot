@@ -4,5 +4,6 @@
 ![image](https://github.com/SantaJiang/GSnapshot/blob/master/image/macos.png)
 
 # Introduction
-* This is a Qt5 development of automatic timing backup software, based on Git, can run in the background, backup all types of projects.
+* This is a Qt5 development of automatic timing backup software, based on Git, can run in the background, backup all types of projects.  
+### ScreenShot：
 ![image](https://github.com/SantaJiang/GSnapshot/blob/master/image/macos.png)
