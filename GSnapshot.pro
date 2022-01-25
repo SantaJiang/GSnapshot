@@ -22,11 +22,13 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     Terminal.cpp \
+    sysconfig.cpp \
     trayicon.cpp
 
 HEADERS += \
         mainwindow.h \
     Terminal.h \
+    sysconfig.h \
     trayicon.h
 
 FORMS += \

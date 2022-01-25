@@ -7,6 +7,7 @@
 #include <QFileDialog>
 #include <QGraphicsDropShadowEffect>
 #include <QDebug>
+#include "sysconfig.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
   , ui(new Ui::MainWindow)
@@ -14,10 +15,15 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
     ui->setupUi(this);
     initForm();
+
+    SysConfig::getInstance()->readConfig();
+    ui->lineEdit_address->setText(SysConfig::getInstance()->getPath());
 }
 
 MainWindow::~MainWindow()
 {
+    SysConfig::getInstance()->setPath(ui->lineEdit_address->text());
+    SysConfig::getInstance()->writeConfig();
     delete ui;
 }
 
